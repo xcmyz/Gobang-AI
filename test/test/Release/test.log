@@ -1,0 +1,9 @@
+﻿  main.cpp
+c:\users\28012\desktop\test\test\main.cpp(10): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\stdio.h(208): note: 参见“fopen”的声明
+  正在生成代码
+  1 of 308 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  test.vcxproj -> C:\Users\28012\Desktop\test\Release\test.exe

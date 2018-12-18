@@ -32,7 +32,7 @@ using namespace std;
 //Function
 Coor Print_Board(BN *board, int *Board_Cursor, string file_name, bool ifprint = false);
 bool Player_Operation(char key, int &X, int &Y, int player,
-					  BN *board, int *Board_Cursor, int &Round_Number);
+	BN *board, int *Board_Cursor, int &Round_Number);
 bool judge(BN *board, int X, int Y, int Current_Player);
 int Find_Biggest(BN *board);
 void print_queue(queue<Coor> output);

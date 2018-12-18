@@ -3,7 +3,7 @@
 
 class AI_Class
 {
-  public:
+public:
 	explicit AI_Class(int Fol, BN *board);
 	~AI_Class();
 
@@ -25,12 +25,12 @@ class AI_Class
 	vector<coor> generator(BN *temp_board);
 
 	//MinMax
-	int maxmin(BN *temp_board, int depth, int player);
+	int maxmin(BN *temp_board, int depth, int player, int alpha, int beta);
 
 	//Decision
 	void decision(BN *board, int &X, int &Y);
 
-  private:
+private:
 	int first_or_latter;
 	BN copy_board[HandL][HandL];
 	int valueofposition[HandL][HandL];

@@ -105,7 +105,7 @@ Coor Print_Board(BN *board, int *Board_Cursor, string file_name, bool ifprint)
 
 //Operation
 bool Player_Operation(char key, int &X, int &Y, int player,
-					  BN *board, int *Board_Cursor, int &Round_Number)
+	BN *board, int *Board_Cursor, int &Round_Number)
 {
 	int ifcontinue = 1;
 	//Control

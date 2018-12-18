@@ -76,8 +76,8 @@ int AI_Class::score(BN *temp_board)
 		for (int j = HandL; j >= i; j--)
 		{
 			tempArr_3_1.push_back((temp_board +
-								   (HandL - j) * HandL + HandL - j + i)
-									  ->value);
+				(HandL - j) * HandL + HandL - j + i)
+				->value);
 		}
 
 		MatchBoard(tempArr_3_1, AI, score_AI);
@@ -90,8 +90,8 @@ int AI_Class::score(BN *temp_board)
 		for (int j = HandL; j >= i; j--)
 		{
 			tempArr_3_2.push_back((temp_board +
-								   (HandL - j + i) * HandL + HandL - j)
-									  ->value);
+				(HandL - j + i) * HandL + HandL - j)
+				->value);
 		}
 
 		MatchBoard(tempArr_3_2, AI, score_AI);
@@ -117,8 +117,8 @@ int AI_Class::score(BN *temp_board)
 		for (int j = 0; j <= HandL - 1 - i; j++)
 		{
 			tempArr_4_2.push_back((temp_board +
-								   (i + j) * HandL + HandL - 1 - j)
-									  ->value);
+				(i + j) * HandL + HandL - 1 - j)
+				->value);
 		}
 
 		MatchBoard(tempArr_4_2, AI, score_AI);
@@ -219,12 +219,14 @@ vector<AI_Class::coor> AI_Class::generator(BN *temp_board)
 	return coor_string;
 }
 
-int AI_Class::maxmin(BN *temp_board, int depth, int player)
+int AI_Class::maxmin(BN *temp_board, int depth, int player, int alpha, int beta)
 {
 	if (depth == 0)
 	{
 		//int t1 = clock();
-		return score(temp_board);
+		int s = score(temp_board);
+		//cout << s << endl;
+		return s;
 		//int t2 = clock();
 		//cout << (t2 - t1) / CLOCKS_PER_SEC;
 	}
@@ -244,13 +246,18 @@ int AI_Class::maxmin(BN *temp_board, int depth, int player)
 			(temp_board + x_t * HandL + y_t)->value = player;
 
 			int other = 3 - player;
-			int new_score = maxmin(temp_board, depth - 1, other);
+			int new_score = maxmin(temp_board, depth - 1, other, alpha, beta);
 			if (new_score > best)
 			{
 				best = new_score;
 			}
+			beta = best;
 
 			(temp_board + x_t * HandL + y_t)->value = 0;
+
+			if (beta <= alpha) {
+				return beta;
+			}
 		}
 
 		return best;
@@ -269,13 +276,18 @@ int AI_Class::maxmin(BN *temp_board, int depth, int player)
 			(temp_board + x_t * HandL + y_t)->value = player;
 
 			int other = 3 - player;
-			int new_score = maxmin(temp_board, depth - 1, other);
+			int new_score = maxmin(temp_board, depth - 1, other, alpha, beta);
 			if (new_score < best)
 			{
 				best = new_score;
 			}
+			alpha = best;
 
 			(temp_board + x_t * HandL + y_t)->value = 0;
+
+			if (alpha >= beta) {
+				return alpha;
+			}
 		}
 
 		return best;
@@ -328,7 +340,7 @@ void AI_Class::decision(BN *board, int &X, int &Y)
 
 				int value_cur;
 				int h = 3 - first_or_latter;
-				value_cur = maxmin((*temp_board), 1, h);
+				value_cur = maxmin((*temp_board), 1, h, fOO, zOO);
 				value_cur += valueofposition[i][j];
 				//cout << "Done";
 				//cout << valueofposition[i][j] << endl;

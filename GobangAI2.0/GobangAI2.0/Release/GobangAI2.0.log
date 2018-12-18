@@ -1,0 +1,11 @@
+﻿  AI_class.cpp
+c:\users\28012\desktop\gobangai2.0\gobangai2.0\ai_class.cpp(240): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\28012\desktop\gobangai2.0\gobangai2.0\ai_class.cpp(265): warning C4018: “<”: 有符号/无符号不匹配
+  func.cpp
+  main.cpp
+c:\users\28012\desktop\gobangai2.0\gobangai2.0\main.cpp(455): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\stdio.h(208): note: 参见“fopen”的声明
+  正在生成代码
+  All 417 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  GobangAI2.0.vcxproj -> C:\Users\28012\Desktop\GobangAI2.0\Release\GobangAI2.0.exe

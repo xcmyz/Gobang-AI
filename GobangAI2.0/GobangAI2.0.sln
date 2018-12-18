@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GobangAI2.0", "GobangAI2.0\GobangAI2.0.vcxproj", "{8AF719B9-7D3C-496C-A250-210400C5D1E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8AF719B9-7D3C-496C-A250-210400C5D1E8}.Debug|x64.ActiveCfg = Debug|x64
+		{8AF719B9-7D3C-496C-A250-210400C5D1E8}.Debug|x64.Build.0 = Debug|x64
+		{8AF719B9-7D3C-496C-A250-210400C5D1E8}.Debug|x86.ActiveCfg = Debug|Win32
+		{8AF719B9-7D3C-496C-A250-210400C5D1E8}.Debug|x86.Build.0 = Debug|Win32
+		{8AF719B9-7D3C-496C-A250-210400C5D1E8}.Release|x64.ActiveCfg = Release|x64
+		{8AF719B9-7D3C-496C-A250-210400C5D1E8}.Release|x64.Build.0 = Release|x64
+		{8AF719B9-7D3C-496C-A250-210400C5D1E8}.Release|x86.ActiveCfg = Release|Win32
+		{8AF719B9-7D3C-496C-A250-210400C5D1E8}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E91ABE02-595E-4FF7-B6BA-3E35E72A30EC}
+	EndGlobalSection
+EndGlobal

@@ -452,20 +452,27 @@ int main()
 	cout << endl;*/
 
 	FILE *Temp;
-	Temp = fopen("play_chess.txt", "wb+");
+	Temp = fopen("play_chess.json", "wb+");
 	fclose(Temp);
 	//print_queue(Coor_queue);
 	int len = Coor_queue.size();
 	ofstream location_out;
-	location_out.open(file_name, std::ios::out | std::ios::app);
+	location_out.open("play_chess.json", std::ios::out | std::ios::app);
+	location_out << "[" << endl;
 	for (int i = 0; i < len; i++)
 	{
 		int h = Coor_queue.front().x;
 		int l = Coor_queue.front().y;
 		Coor_queue.pop();
-		location_out << "[" << h << ", " << l << "]";
-		location_out << " : " << i + 1 << endl;
-	}
+		location_out << "{" << "\"" << i + 1 << "\"" << ":";
+		if (i == len - 1) {
+			location_out << "\"" << h << " " << l << "\"" << "}" << endl;
+		}
+		else {
+			location_out << "\"" << h << " " << l << "\"" << "}" << "," << endl;
+		}
+	} 
+	location_out << "]";
 	//print_queue(Coor_queue);
 
 	system("pause");

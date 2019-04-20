@@ -32,15 +32,9 @@ int order_max = 1;
 
 vector<coor> orders;
 
-void print_board(const char* board_file) {
-	if (!orders.size()) {
-		FILE* board1;
-		board1 = fopen(board_1, "wb+");
-		return;
-	}
-
+void print_print() {
 	FILE* Temp;
-	Temp = fopen(board_file, "wb+");
+	Temp = fopen("play_chess.json", "wb+");
 	fclose(Temp);
 
 	int len = orders.size();
@@ -60,6 +54,60 @@ void print_board(const char* board_file) {
 		}
 	}
 	location_out << "]";
+	location_out.close();
+}
+
+void print_board(const char* board_file) {
+	if (!orders.size()) {
+		FILE* board1;
+		board1 = fopen(board_1, "wb+");
+		fclose(board1);
+		return;
+	}
+
+	FILE* Temp;
+	Temp = fopen(board_file, "wb+");
+	fclose(Temp);
+
+	Temp = fopen("play_chess.json", "wb+");
+	fclose(Temp);
+
+	int len = orders.size();
+	ofstream location_out;
+	location_out.open("play_chess.json", std::ios::out | std::ios::app);
+	location_out << "[" << endl;
+	for (int i = 0; i < len; i++)
+	{
+		int h = orders[i].x;
+		int l = orders[i].y;
+		location_out << "{" << "\"" << i + 1 << "\"" << ":";
+		if (i == len - 1) {
+			location_out << "\"" << h << " " << l << "\"" << "}" << endl;
+		}
+		else {
+			location_out << "\"" << h << " " << l << "\"" << "}" << "," << endl;
+		}
+	}
+	location_out << "]";
+	location_out.close();
+
+	len = orders.size();
+	location_out.open(board_file, std::ios::out | std::ios::app);
+	location_out << "[" << endl;
+	for (int i = 0; i < len; i++)
+	{
+		int h = orders[i].x;
+		int l = orders[i].y;
+		location_out << "{" << "\"" << i + 1 << "\"" << ":";
+		if (i == len - 1) {
+			location_out << "\"" << h << " " << l << "\"" << "}" << endl;
+		}
+		else {
+			location_out << "\"" << h << " " << l << "\"" << "}" << "," << endl;
+		}
+	}
+	location_out << "]";
+	location_out.close();
 }
 
 bool _judge(BN* board, int X, int Y)
@@ -163,8 +211,26 @@ int judge() {
 
 	//检测落子是否有重复
 	for (int i = 0; i < orders.size(); i++) {
-		for (int j = i; j < orders.size(); j++) {
+		for (int j = i + 1; j < orders.size(); j++) {
 			if ((orders[i].x == orders[j].x) && (orders[i].y == orders[j].y)) {
+				cout << "落子重复啦！" << endl;
+				return -1;
+			}
+		}
+	}
+
+	//禁手
+	if (orders.size() <= 3) {
+		if (orders.size() == 1) {
+			if (orders[0].x != 7 || orders[0].y != 7) {
+				cout << "第一个落子不在天元！" << endl;
+				return -1;
+			}
+		}
+
+		if (orders.size() == 3) {
+			if (orders[2].x <= 9 && orders[2].x >= 5 && orders[2].y <= 9 && orders[2].y >= 5) {
+				cout << "第三子不符合禁手规则！" << endl;
 				return -1;
 			}
 		}
@@ -207,6 +273,7 @@ void init() {
 
 int step_2() {
 	print_board(board_1);
+	//cout << "#########" << endl;
 
 	while (true) {
 		ifstream fin(coor_1);
@@ -226,6 +293,7 @@ int step_2() {
 	}
 	x = t[0] - 48;
 	y = t[1] - 48;
+	cout << x << " " << y << endl;
 	coor_1_file.close();
 
 	remove(coor_1);
@@ -236,6 +304,10 @@ int step_2() {
 	c_temp.x = x;
 	c_temp.y = y;
 	orders.push_back(c_temp);
+
+	for (int i = 0; i < orders.size(); i++) {
+		cout << "x: " << orders[i].x << "; y: " << orders[i].y << "; order: " << orders[i].order << endl;
+	}
 
 	int out = judge();
 	return out;
@@ -273,6 +345,10 @@ int step_4() {
 	c_temp.y = y;
 	orders.push_back(c_temp);
 
+	for (int i = 0; i < orders.size(); i++) {
+		cout << "x: " << orders[i].x << "; y: " << orders[i].y << "; order: " << orders[i].order << endl;
+	}
+
 	int out = judge();
 	return out;
 }
@@ -283,6 +359,7 @@ int main() {
 	int winner;
 	while (true) {
 		int result_1 = step_2();
+		cout << result_1 << endl;
 		if (result_1) {
 			winner = result_1;
 			break;
@@ -293,6 +370,7 @@ int main() {
 			break;
 		}
 	}
+	print_print();
 	cout << winner << endl;
 	return 0;
 }
